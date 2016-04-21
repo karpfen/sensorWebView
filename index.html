@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+Project: Urban Emotions Web Viewer
+
+The Urban Emotions Web Viewer is free software. It can be redistributed and
+modified under the terms of the GNU General Public Licence as published by the
+Free Software Foundation, either Version 3 of the license, or (at your option)
+any later version.
+
+For the license, see <http://www.gnu.org/licenses/>.
+
+Author: Andreas Petutschnig
+Email: andreas@petutschnig.de
+
+Description: This web viewer can be used to call a web processing service to
+generate images derived from sensor data and display this data in a web map.
+-->
+<html>
+  <head>
+    <meta charset="UTF-8"> 
+    <title>Urban Emotions Web Viewer</title>
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.15.1/css/ol.css" type="text/css">
+    <script src="http://openlayers.org/en/v3.15.1/build/ol.js"></script>
+    <script src="script.js" type="text/javascript"></script>
+    <style>
+      a.skiplink {
+        position: absolute;
+        clip: rect(1px, 1px, 1px, 1px);
+        padding: 0;
+        border: 0;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+      }
+      a.skiplink:focus {
+        clip: auto;
+        height: auto;
+        width: auto;
+        background-color: #fff;
+        padding: 0.3em;
+      }
+      #map:focus {
+        outline: #4A74A8 solid 0.15em;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skiplink" href="#map">Go to map</a>
+    <div id="map" class="map" tabindex="0"></div>
+    <button id="zoom-out">Zoom out</button>
+    <button id="zoom-in">Zoom in</button>
+  </body>
+  <script>
+      var map = new ol.Map({
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        target: 'map',
+        controls: ol.control.defaults({
+          attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+            collapsible: false
+          })
+        }),
+        view: new ol.View({
+          center: [0, 0],
+          zoom: 2
+        })
+      });
+
+      document.getElementById('zoom-out').onclick = function() {
+        var view = map.getView();
+        var zoom = view.getZoom();
+        view.setZoom(zoom - 1);
+      };
+
+      document.getElementById('zoom-in').onclick = function() {
+        var view = map.getView();
+        var zoom = view.getZoom();
+        view.setZoom(zoom + 1);
+      };
+</script>
+</html>
