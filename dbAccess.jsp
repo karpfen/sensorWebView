@@ -3,7 +3,7 @@
 <%@ page import="javax.xml.xpath.*" %>
 <%@ page import="javax.xml.sax.InputSource" %>
 <%@ page import="java.io.InputStream" %>
-<%@ page import="org.w3c.dom.Document" %>
+<%@ page import="org.w3c.dom.Document;" %>
 <%
 try {
 
