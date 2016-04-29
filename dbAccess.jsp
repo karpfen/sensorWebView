@@ -1,5 +1,9 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.* " %>
-<%@ page import="java.io.*" %>
+<%@ page contentType="text/html; charset=utf-8" language="java"
+<%@ page import="java.sql.*" %>
+<%@ page import="javax.xml.xpath.*" %>
+<%@ page import="javax.xml.sax.InputSource" %>
+<%@ page import="java.io.InputStream">
+<%@ page import="org.w3c.dom.Document"%>
 <%
 try {
 
