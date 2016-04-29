@@ -2,10 +2,25 @@
 <%@ page import="java.io.*" %>
 <%
 try {
-String driver = "";
-String url = "";
-String username = "";
-String password = "";
+
+// Parse the config file for database credentials
+InputStream input =
+Thread.currentThread().getContextClassLoader().getResourceAsStream("dbConfig.xml");
+Document document =
+DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new
+InputSource(input));
+XPath xpath = XPathFactory.newInstance().newXPath();
+
+String driver = (String)
+xpath.compule("//config//jdbc//driver").evaluate(document, XPathConstants.STRING);
+String url = (String)
+xpath.compule("//config//jdbc//url").evaluate(document, XPathConstants.STRING);
+String username = (String)
+xpath.compule("//config//jdbc//username").evaluate(document, XPathConstants.STRING);
+String password = (String)
+xpath.compule("//config//jdbc//password").evaluate(document, XPathConstants.STRING);
+
+// Access database
 String myDataField = null;
 String myQuery = "SELECT * FROM observations_compact LIMIT 10";
 Connection myConnection = null;
