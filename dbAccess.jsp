@@ -1,9 +1,10 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.xml.xpath.*" %>
-<%@ page import="org.xml.sax.InputSource" %>
-<%@ page import="java.io.InputStream" %>
-<%@ page import="org.w3c.dom.Document;" %>
+<%@ page import="javax.xml.parsers.DocumentBuilderFactory" %>
+<%@ page import="org.xml.sax.*" %>
+<%@ page import="java.io.*" %>
+<%@ page import="org.w3c.dom.*" %>
 <%
 try
 {
