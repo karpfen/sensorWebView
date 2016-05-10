@@ -17,13 +17,13 @@ try
     XPath xpath = XPathFactory.newInstance().newXPath();
 
     String driver = (String)
-        xpath.compule("//config//jdbc//driver").evaluate(document, XPathConstants.STRING);
+        xpath.compile("//config//jdbc//driver").evaluate(document, XPathConstants.STRING);
     String url = (String)
-        xpath.compule("//config//jdbc//url").evaluate(document, XPathConstants.STRING);
+        xpath.compile("//config//jdbc//url").evaluate(document, XPathConstants.STRING);
     String username = (String)
-        xpath.compule("//config//jdbc//username").evaluate(document, XPathConstants.STRING);
+        xpath.compile("//config//jdbc//username").evaluate(document, XPathConstants.STRING);
     String password = (String)
-        xpath.compule("//config//jdbc//password").evaluate(document, XPathConstants.STRING);
+        xpath.compile("//config//jdbc//password").evaluate(document, XPathConstants.STRING);
 
     // Access database
     String myDataField = null;
