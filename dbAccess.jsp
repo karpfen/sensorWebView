@@ -2,6 +2,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.xml.xpath.*" %>
 <%@ page import="javax.xml.parsers.DocumentBuilderFactory" %>
+<%@ page import="javax.xml.parsers.DocumentBuilder" %>
 <%@ page import="org.xml.sax.*" %>
 <%@ page import="java.io.*" %>
 <%@ page import="org.w3c.dom.*" %>
@@ -9,11 +10,11 @@
 try
 {
     // Parse the config file for database credentials
-    InputStream input =
-        Thread.currentThread().getContextClassLoader().getResourceAsStream("dbConfig.xml");
-    Document document =
-        DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new
-                InputSource(input));
+	DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	factory.setNamespaceAware (true);
+    DocumentBuilder builder = factory.newDocumentBuilder();
+    Document document = builder.parse(new ByteArrayInputStream ("dbConfig.xml".getBytes ()));
+
     XPath xpath = XPathFactory.newInstance().newXPath();
 
     String driver = (String)
@@ -49,5 +50,9 @@ catch (SQLException ex)
     out.print("SQLException: "+ex.getMessage());
     out.print("SQLState: " + ex.getSQLState());
     out.print("VendorError: " + ex.getErrorCode());
+}
+catch (IOException ioEx)
+{
+	out.println(ioEx.getMessage ());
 }
 %>
