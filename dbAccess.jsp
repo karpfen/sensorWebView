@@ -9,17 +9,16 @@
 <%
 try
 {
-	// Parse the config file for database credentials
-	String configFileURI = "conf\\dbConfig.xml";
-	File file = new File (configFileURI);
-	if (file.exists () == false)
-		out.println ("<p>Config file \"" + configFileURI + "\" not found.");
-		
-	DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance ();
+    // Parse the config file for database credentials
+    String configFileURI = "conf\\dbConfig.xml";
+    File file = new File (configFileURI);
+    if (file.exists () == false)
+        out.println ("<p>Config file \"" + configFileURI + "\" not found.");
+
+    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance ();
     DocumentBuilder builder = factory.newDocumentBuilder ();
-	InputSource is = new InputSource (new StringReader (configFileURI));
+    InputSource is = new InputSource (new StringReader (configFileURI));
     Document document = builder.parse (is);
-	out.println(document);
 
     XPath xpath = XPathFactory.newInstance().newXPath();
 
@@ -53,19 +52,19 @@ catch (ClassNotFoundException e)
 }
 catch (SQLException ex)
 {
-	out.println ("<p>");
+    out.println ("<p>");
     out.print("SQLException: "+ ex.getMessage () + "<p>");
     out.print("SQLState: " + ex.getSQLState () + "<p>");
     out.print("VendorError: " + ex.getErrorCode () + "<p>");
 }
 catch (IOException ioEx)
 {
-	out.println ("<p>");
-	out.println("IOException: " + ioEx.getMessage ());
+    out.println ("<p>");
+    out.println("IOException: " + ioEx.getMessage ());
 }
 catch (SAXParseException saxEx)
 {
-	out.println ("<p>");
-	out.println("SAXParseException: " + saxEx.getMessage ());
+    out.println ("<p>");
+    out.println("SAXParseException: " + saxEx.getMessage ());
 }
 %>
