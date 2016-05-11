@@ -3,7 +3,7 @@
 <%@ page import="javax.xml.xpath.*" %>
 <%@ page import="javax.xml.parsers.DocumentBuilderFactory" %>
 <%@ page import="javax.xml.parsers.DocumentBuilder" %>
-<%@ page import="org.xml.sax.*" %>
+<%@ page import="org.xml.sax.SAXParseException" %>
 <%@ page import="java.io.*" %>
 <%@ page import="org.w3c.dom.*" %>
 <%
@@ -17,8 +17,7 @@ try
 
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance ();
     DocumentBuilder builder = factory.newDocumentBuilder ();
-    InputSource is = new InputSource (new StringReader (configFileURI));
-    Document document = builder.parse (is);
+    Document document = builder.parse (file);
 
     XPath xpath = XPathFactory.newInstance().newXPath();
 
@@ -60,11 +59,11 @@ catch (SQLException ex)
 catch (IOException ioEx)
 {
     out.println ("<p>");
-    out.println("IOException: " + ioEx.getMessage ());
+    out.println ("IOException: " + ioEx.getMessage ());
 }
 catch (SAXParseException saxEx)
 {
     out.println ("<p>");
-    out.println("SAXParseException: " + saxEx.getMessage ());
+    out.println ("SAXParseException: " + saxEx.getMessage ());
 }
 %>
