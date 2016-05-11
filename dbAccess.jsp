@@ -31,8 +31,9 @@ try
         xpath.compile ("//config//jdbc//password").evaluate (document, XPathConstants.STRING);
 
     // Access database
-    String myDataField = null;
-    String myQuery = "SELECT * FROM observations_compact LIMIT 10";
+    String myQuery = "SELECT column_name "
+        + "FROM information_schema.columns "
+        + "WHERE table_name = 'observations_compact'";
     Connection myConnection = null;
     PreparedStatement myPreparedStatement = null;
     ResultSet rset = null;
@@ -40,9 +41,20 @@ try
     myConnection = DriverManager.getConnection(url,username,password);
     myPreparedStatement = myConnection.prepareStatement(myQuery);
     rset = myPreparedStatement.executeQuery();
-    if (rset.next ())
-        myDataField = rset.getString("heartrate");
-    out.print(myDataField);
+    
+    //build sensor drop down list
+    String sensorName = "";
+    out.println ("<select name = \"Sensor\">");
+    while (rset.next ())
+    {
+        sensorName = rset.getString("column_name");
+        out.print ("<option value = \"");
+        out.print (sensorName);
+        out.print ("\">");
+        out.print (sensorName);
+        out.println ("</option>");
+    }
+    out.println ("</select>");
 }
 catch (ClassNotFoundException e)
 {
