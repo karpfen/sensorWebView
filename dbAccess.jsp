@@ -29,7 +29,15 @@ try
     String configFileURI = "conf\\dbConfig.xml";
     File file = new File (configFileURI);
     if (file.exists () == false)
+    {
+        // Check if file exists on Unix system
+        configFileURI = "conf/dbConfig.xml";
+        file = new File (configFileURI);
+    }
+    if (file.exists () == false)
+    {
         out.println ("<p>Config file \"" + configFileURI + "\" not found.");
+    }
 
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance ();
     DocumentBuilder builder = factory.newDocumentBuilder ();
@@ -57,7 +65,7 @@ try
     myConnection = DriverManager.getConnection(url,username,password);
     myPreparedStatement = myConnection.prepareStatement(myQuery);
     rset = myPreparedStatement.executeQuery();
-    
+
     //build sensor drop down list
     String sensorName = "";
     out.println ("<select name = \"Sensor\">");
