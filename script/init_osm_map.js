@@ -17,33 +17,43 @@
 
 function init_osm()
 {
-      var map = new ol.Map({
+    var mapLayer = new ol.layer.Tile({
+        source: new ol.source.OSM()
+    });
+    var heatMapLayer = new ol.layer.Tile({
+        title: 'Heat map',
+        source: new ol.source.TileWMS({
+        url: 'http://localhost:8080/geoserver/uEmotions/wms',
+        params: {LAYERS: 'uEmotions:observations_compact', VERSION: '1.1.1'}
+        })
+    });
+
+    var map = new ol.Map({
         layers: [
-          new ol.layer.Tile({
-            source: new ol.source.OSM()
-          })
+        mapLayer,
+        heatMapLayer
         ],
         target: 'osm_map',
         controls: ol.control.defaults({
-          attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+            attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
             collapsible: false
-          })
+            })
         }),
         view: new ol.View({
-          center: [0, 0],
-          zoom: 2
+            center: [0, 0],
+            zoom: 2
         })
-      });
-
-      document.getElementById('zoom-out').onclick = function() {
+    });
+      
+    document.getElementById('zoom-out').onclick = function() {
         var view = map.getView();
         var zoom = view.getZoom();
         view.setZoom(zoom - 1);
-      };
+    };
 
-      document.getElementById('zoom-in').onclick = function() {
+    document.getElementById('zoom-in').onclick = function() {
         var view = map.getView();
         var zoom = view.getZoom();
         view.setZoom(zoom + 1);
-      };
+    };
 }
