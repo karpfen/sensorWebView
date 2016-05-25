@@ -15,45 +15,56 @@
  * generate images derived from sensor data and display this data in a web map.
  */
 
-function init_osm()
+var heatMapLayer;
+var map;
+
+function makeHeatMapLayer ()
 {
-    var mapLayer = new ol.layer.Tile({
-        source: new ol.source.OSM()
-    });
-    var heatMapLayer = new ol.layer.Tile({
+    // Variables defined by the user
+    var radius = document.getElementById ("radiusSlider").value;
+
+    heatMapLayer = new ol.layer.Tile ({
         title: 'Heat map',
         source: new ol.source.TileWMS({
         url: 'http://localhost:8080/geoserver/uEmotions/wms',
-        params: {LAYERS: 'uEmotions:observations_compact', VERSION: '1.1.1'}
+        params: {LAYERS: 'uEmotions:observations_compact', VERSION: '1.1.1',
+        env: 'radius:' + radius}
         })
     });
+}
 
-    var map = new ol.Map({
-        layers: [
-        mapLayer,
-        heatMapLayer
-        ],
+function init_osm ()
+{
+    var mapLayer = new ol.layer.Tile ({
+        source: new ol.source.OSM ()
+    });
+    makeHeatMapLayer ();
+
+    map = new ol.Map ({
         target: 'osm_map',
-        controls: ol.control.defaults({
+        controls: ol.control.defaults ({
             attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
             collapsible: false
             })
         }),
-        view: new ol.View({
+        view: new ol.View ({
             center: [0, 0],
             zoom: 2
         })
     });
-      
-    document.getElementById('zoom-out').onclick = function() {
-        var view = map.getView();
-        var zoom = view.getZoom();
-        view.setZoom(zoom - 1);
+
+    map.addLayer (mapLayer);
+    map.addLayer (heatMapLayer);
+
+    document.getElementById ('zoom-out').onclick = function () {
+        var view = map.getView ();
+        var zoom = view.getZoom ();
+        view.setZoom (zoom - 1);
     };
 
-    document.getElementById('zoom-in').onclick = function() {
-        var view = map.getView();
-        var zoom = view.getZoom();
-        view.setZoom(zoom + 1);
+    document.getElementById ('zoom-in').onclick = function () {
+        var view = map.getView ();
+        var zoom = view.getZoom ();
+        view.setZoom (zoom + 1);
     };
 }
