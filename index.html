@@ -33,6 +33,11 @@ generate images derived from sensor data and display this data in a web map.
         onchange="updateRadiusSlider (radiusValue.value)"/>
         <button onclick="reloadHeatMap ()">Render Heat Map</button>
         <button onclick="removeHeatMap ()">Remove Heat Map</button>
+        <select id="styleSelector">
+        <option value = "heartrate_int">heartrate_int</option>
+        <option value = "respiration_double">respiration_double</option>
+        <option value = "breathing_int">breathing_int</option>
+        </select>
     </div>
     <div id="osm_map" class="map" tabindex="0"></div>
     <button id="zoom-out">Zoom out</button>

@@ -21,14 +21,16 @@ var map;
 function makeHeatMapLayer ()
 {
     // Variables defined by the user
-    var radius = document.getElementById ("radiusSlider").value;
+    var radius = document.getElementById ('radiusSlider').value;
+    var wmsStyle = document.getElementById ('styleSelector').value;
+    wmsStyle = getHeatmapStyleName (wmsStyle);
 
     heatMapLayer = new ol.layer.Tile ({
         title: 'Heat map',
         source: new ol.source.TileWMS({
         url: 'http://localhost:8080/geoserver/uEmotions/wms',
         params: {LAYERS: 'uEmotions:observations_compact', VERSION: '1.1.1',
-        env: 'radius:' + radius}
+        env: 'radius:' + radius, STYLES: "" + wmsStyle}
         })
     });
 }
@@ -67,4 +69,13 @@ function init_osm ()
         var zoom = view.getZoom ();
         view.setZoom (zoom + 1);
     };
+}
+
+function getHeatmapStyleName (wmsStyle)
+{
+    wmsStyle = wmsStyle.replace ("_int", "");
+    wmsStyle = wmsStyle.replace ("_double", "");
+    wmsStyle = wmsStyle.replace ("_float", "");
+    wmsStyle = "heatmap_" + wmsStyle;
+    return wmsStyle;
 }
