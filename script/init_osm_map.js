@@ -25,12 +25,13 @@ function makeHeatMapLayer ()
     var wmsStyle = document.getElementById ('styleSelector').value;
     wmsStyle = getHeatmapStyleName (wmsStyle);
 
-    heatMapLayer = new ol.layer.Tile ({
+    heatMapLayer = new ol.layer.Image ({
         title: 'Heat map',
-        source: new ol.source.TileWMS({
-        url: 'http://localhost:8080/geoserver/uEmotions/wms',
-        params: {LAYERS: 'uEmotions:observations_compact', VERSION: '1.1.1',
-        env: 'radius:' + radius, STYLES: "" + wmsStyle}
+        source: new ol.source.ImageWMS({
+        url: 'http://' + location.hostname + ':8080/geoserver/uEmotions/wms',
+        params: {LAYERS: 'uEmotions:observations_compact', env: 'radius:' + radius,
+        STYLES: "" + wmsStyle},
+        serverType: 'geoserver'
         })
     });
 }
