@@ -29,7 +29,7 @@ generate images derived from sensor data and display this data in a web map.
     <div id="layerConfig">
         <input id="radiusSlider" type="range" min="1" max="100" step="1"
         onchange="updateRadiusValue (radiusSlider.value)"/>
-        <input id="radiusValue" type="number" min="1" max="100"
+        <input id="radiusValue" type="number" min="1" max="100" value="50"
         onchange="updateRadiusSlider (radiusValue.value)"/>
         <button onclick="reloadHeatMap ()">Render Heat Map</button>
         <button onclick="removeHeatMap ()">Remove Heat Map</button>
@@ -38,6 +38,7 @@ generate images derived from sensor data and display this data in a web map.
         <option value = "respiration_double">respiration_double</option>
         <option value = "breathing_int">breathing_int</option>
         </select>
+        <%@include file="dbAccess.jsp" %>
     </div>
     <div id="osm_map" class="map" tabindex="0"></div>
     <button id="zoom-out">Zoom out</button>
