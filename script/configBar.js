@@ -15,6 +15,52 @@
  * generate images derived from sensor data and display this data in a web map.
  */
 
+$ (function ()
+{
+    // Render heat map
+    $ ("#btnRenderHeatMap").button ()
+    .click (function (event)
+    {
+        map.removeLayer (heatMapLayer);
+        makeHeatMapLayer ();
+        map.addLayer (heatMapLayer);
+    });
+
+    // Remove heat map
+    $ ("#btnRemoveHeatMap").button ()
+    .click (function (event)
+    {
+        map.removeLayer (heatMapLayer);
+    });
+
+    // Radius slider
+    $ ("#sldRadius").slider ({
+    range: "min",
+    value: 50,
+    min: 1,
+    max: 100,
+    slide: function (event, ui)
+        {
+            $ ("#txtRadius").val (ui.value);
+        }
+    });
+    $ ("#txtRadius").val ($ ("#sldRadius").slider ("value"));
+
+    //Date slider
+    $ ("#sldDate").slider ({
+    range: true,
+    min: 0,
+    max: 100,
+    values: [25, 75],
+    slide: function (event, ui)
+        {
+            $ ("#txtDate").val (ui.values[0] + " - " + ui.values[1]);
+        }
+    });
+    $ ("txtDate").val ($("#sldDate").slider ("values", 0) + " - " + $
+    ("#sldDate").slider ("values", 1));
+});
+
 function updateRadiusValue (val)
 {
     document.getElementById ("radiusValue").value = val;
@@ -23,16 +69,4 @@ function updateRadiusValue (val)
 function updateRadiusSlider (val)
 {
     document.getElementById ("radiusSlider").value = val;
-}
-
-function removeHeatMap ()
-{
-    map.removeLayer (heatMapLayer);
-}
-
-function reloadHeatMap ()
-{
-    map.removeLayer (heatMapLayer);
-    makeHeatMapLayer ();
-    map.addLayer (heatMapLayer);
 }

@@ -21,7 +21,7 @@ var map;
 function makeHeatMapLayer ()
 {
     // Variables defined by the user
-    var radius = document.getElementById ('radiusSlider').value;
+    var radius = $ ("#sldRadius").slider ("option", "value");
     var wmsStyle = document.getElementById ('styleSelector').value;
     wmsStyle = getHeatmapStyleName (wmsStyle);
 

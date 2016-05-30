@@ -19,20 +19,36 @@ generate images derived from sensor data and display this data in a web map.
   <head>
     <meta charset="UTF-8"> 
     <title>Urban Emotions Web Viewer</title>
-    <link rel="stylesheet" href="http://openlayers.org/en/v3.16.0/css/ol.css" type="text/css">
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="http://openlayers.org/en/v3.16.0/css/ol.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css"
+    href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="http://openlayers.org/en/v3.16.0/build/ol.js"></script>
     <script src="script/init_osm_map.js" type="text/javascript"></script>
     <script src="script/configBar.js" type="text/javascript"></script>
   </head>
   <body onload="init_osm ();">
     <div id="layerConfig">
-        <input id="radiusSlider" type="range" min="1" max="100" step="1"
-        onchange="updateRadiusValue (radiusSlider.value)"/>
-        <input id="radiusValue" type="number" min="1" max="100" value="50"
-        onchange="updateRadiusSlider (radiusValue.value)"/>
-        <button onclick="reloadHeatMap ()">Render Heat Map</button>
-        <button onclick="removeHeatMap ()">Remove Heat Map</button>
+        <p>
+            <div>
+                <label for="txtRadius">Radius:</label>
+                <input type="text" id="txtRadius" readonly style="border:0;
+                font-weight: bold">
+            </div>
+            <div id="sldRadius"></div>
+        </p>
+        <p>
+            <div>
+                <label for="txtDate"></label>
+                <input type="text" id="txtDate" readonly style="border:0;
+                font-weight: bold">
+            </div>
+            <div id="sldDate"></div>
+        </p>
+        <button id="btnRenderHeatMap">Render Heat Map</button>
+        <button id="btnRemoveHeatMap">Remove Heat Map</button>
         <select id="styleSelector">
         <option value = "heartrate_int">heartrate_int</option>
         <option value = "respiration_double">respiration_double</option>
