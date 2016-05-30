@@ -15,22 +15,77 @@
  * generate images derived from sensor data and display this data in a web map.
  */
 
-a.skiplink {
-        position: absolute;
-        clip: rect(1px, 1px, 1px, 1px);
-        padding: 0;
-        border: 0;
-        height: 1px;
-        width: 1px;
-        overflow: hidden;
-      }
-      a.skiplink:focus {
-        clip: auto;
-        height: auto;
-        width: auto;
-        background-color: #fff;
-        padding: 0.3em;
-      }
-      #map:focus {
-        outline: #4A74A8 solid 0.15em;
-      }
+a.skiplink
+{
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+
+a.skiplink:focus
+{
+    clip: auto;
+    height: auto;
+    width: auto;
+    background-color: #fff;
+    padding: 0.3em;
+}
+
+#map:focus {
+    outline: #4A74A8 solid 0.15em; }
+
+fieldset {
+    border: 0; }
+
+label
+{
+    display: block;
+    margin: 30px 0 0 0;
+}
+
+select {
+    width: 200px; }
+
+.overflow {
+    height: 200px; }
+
+#mapWrapper
+{
+    width: 100%;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+#layerConfig
+{
+    position: fixed;
+    right: 10px;
+    z-index: 1;
+    background: #white;
+    background: rgba(255, 255, 255, 0.9);
+    width: 400px;
+    border: 2px solid black;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+#map
+{
+    position: absolute;
+    z-index: 0;
+    border: 1px solid green;
+    overflow: hidden;
+}
+
+input
+{
+    border: 0;
+    font-weight: bold;
+    background: #white;
+    background: rgba(255, 255, 255, 0.9);
+}

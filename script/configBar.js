@@ -41,12 +41,12 @@ $ (function ()
     max: 100,
     slide: function (event, ui)
         {
-            $ ("#txtRadius").val (ui.value);
+            $ ("#txtRadius").val (ui.value + " px");
         }
     });
-    $ ("#txtRadius").val ($ ("#sldRadius").slider ("value"));
+    $ ("#txtRadius").val ($ ("#sldRadius").slider ("value") + " px");
 
-    //Date slider
+    // Date slider
     $ ("#sldDate").slider ({
     range: true,
     min: 0,
@@ -59,6 +59,9 @@ $ (function ()
     });
     $ ("txtDate").val ($("#sldDate").slider ("values", 0) + " - " + $
     ("#sldDate").slider ("values", 1));
+
+    // Sensor select
+    $ ("#selSensor").selectmenu ();
 });
 
 function updateRadiusValue (val)

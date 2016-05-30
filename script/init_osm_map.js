@@ -22,7 +22,7 @@ function makeHeatMapLayer ()
 {
     // Variables defined by the user
     var radius = $ ("#sldRadius").slider ("option", "value");
-    var wmsStyle = document.getElementById ('styleSelector').value;
+    var wmsStyle = $ ("#selSensor").val ();
     wmsStyle = getHeatmapStyleName (wmsStyle);
 
     heatMapLayer = new ol.layer.Image ({

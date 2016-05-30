@@ -30,33 +30,42 @@ generate images derived from sensor data and display this data in a web map.
     <script src="script/configBar.js" type="text/javascript"></script>
   </head>
   <body onload="init_osm ();">
-    <div id="layerConfig">
-        <p>
+    <div id="mapWrapper">
+        <div id="layerConfig">
+            <p>
+                <div>
+                    <label for="txtRadius">Radius:</label>
+                    <input type="text" id="txtRadius"readonly>
+                </div>
+                <div id="sldRadius"></div>
+            </p>
+            <p>
+                <div>
+                    <label for="txtDate">Date:</label>
+                    <input type="text" id="txtDate" readonly>
+                </div>
+                <div id="sldDate"></div>
+            </p>
             <div>
-                <label for="txtRadius">Radius:</label>
-                <input type="text" id="txtRadius" readonly style="border:0;
-                font-weight: bold">
+                <form action="#">
+                    <fieldset>
+                        <label for="selSensor">Select a Sensor</label>
+                        <select name="selSensor" id="selSensor">
+                            <option value = "heartrate_int">Heartrate</option>
+                            <option value = "respiration_double">Respiration</option>
+                            <option value = "breathing_int">Breathing</option>
+                        </select>
+                    </fieldset>
+                </form>
             </div>
-            <div id="sldRadius"></div>
-        </p>
-        <p>
+            </br>
             <div>
-                <label for="txtDate"></label>
-                <input type="text" id="txtDate" readonly style="border:0;
-                font-weight: bold">
+                <button id="btnRenderHeatMap">Render Heat Map</button>
+                <button id="btnRemoveHeatMap">Remove Heat Map</button>
             </div>
-            <div id="sldDate"></div>
-        </p>
-        <button id="btnRenderHeatMap">Render Heat Map</button>
-        <button id="btnRemoveHeatMap">Remove Heat Map</button>
-        <select id="styleSelector">
-        <option value = "heartrate_int">heartrate_int</option>
-        <option value = "respiration_double">respiration_double</option>
-        <option value = "breathing_int">breathing_int</option>
-        </select>
-        <%@include file="dbAccess.jsp" %>
+        </div>
+        <div id="osm_map" class="map" tabindex="0"></div>
     </div>
-    <div id="osm_map" class="map" tabindex="0"></div>
     <button id="zoom-out">Zoom out</button>
     <button id="zoom-in">Zoom in</button>
   </body>
