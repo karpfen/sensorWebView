@@ -23,6 +23,8 @@ generate images derived from sensor data and display this data in a web map.
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css"
     href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,700'
+    rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="http://openlayers.org/en/v3.16.0/build/ol.js"></script>
@@ -32,9 +34,10 @@ generate images derived from sensor data and display this data in a web map.
   <body onload="init_osm ();">
     <div id="mapWrapper">
         <div id="layerConfig">
+        <h1>SensorWebView</h1>
             <p>
                 <div>
-                    <label for="txtRadius">Radius:</label>
+                    <label for="txtRadius">Weight:</label>
                     <input type="text" id="txtRadius"readonly>
                 </div>
                 <div id="sldRadius"></div>
@@ -46,27 +49,32 @@ generate images derived from sensor data and display this data in a web map.
                 </div>
                 <div id="sldDate"></div>
             </p>
-            <div>
-                <form action="#">
-                    <fieldset>
-                        <label for="selSensor">Select a Sensor</label>
-                        <select name="selSensor" id="selSensor">
-                            <option value = "heartrate_int">Heartrate</option>
-                            <option value = "respiration_double">Respiration</option>
-                            <option value = "breathing_int">Breathing</option>
-                        </select>
-                    </fieldset>
-                </form>
-            </div>
-            </br>
-            <div>
-                <button id="btnRenderHeatMap">Render Heat Map</button>
-                <button id="btnRemoveHeatMap">Remove Heat Map</button>
-            </div>
+            <p>
+                <div id="selSensorContainer">
+                    <form action="#" class="autoWidth">
+                        <fieldset class="autoWidth">
+                            <label for="selSensor">Select a Sensor</label>
+                            <select name="selSensor" id="selSensor">
+                                <option value = "heartrate_int">Heartrate</option>
+                                <option value = "respiration_double">Respiration</option>
+                                <option value = "breathing_int">Breathing</option>
+                            </select>
+                        </fieldset>
+                    </form>
+                </div>
+            </p>
+            <hr>
+            <p>
+                <div>
+                    <button id="btnRenderHeatMap">Render Heat Map</button>
+                    <button id="btnRemoveHeatMap">Remove Heat Map</button>
+                </div>
+            </p>
         </div>
         <div id="osm_map" class="map" tabindex="0"></div>
     </div>
     <button id="zoom-out">Zoom out</button>
     <button id="zoom-in">Zoom in</button>
+    <img id="uniLogo" src="./img/uni_sbg_logo.gif"/>
   </body>
 </html>

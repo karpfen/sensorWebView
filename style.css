@@ -15,6 +15,25 @@
  * generate images derived from sensor data and display this data in a web map.
  */
 
+* {
+    font-family: "Merriweather", serif;
+}
+p, h1, label
+{
+    font-size: 18px;
+    color: #555;
+}
+
+label {
+    font-weight: bold; }
+
+h1
+{
+    text-align: center;
+    font-size: 28px;
+    color: #006a93;
+}
+
 a.skiplink
 {
     position: absolute;
@@ -56,7 +75,7 @@ select {
 #mapWrapper
 {
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid #555;
     overflow: hidden;
 }
 
@@ -64,11 +83,11 @@ select {
 {
     position: fixed;
     right: 10px;
-    z-index: 1;
-    background: #white;
+    z-index: 2;
+    background: #FFFFFF;
     background: rgba(255, 255, 255, 0.9);
     width: 400px;
-    border: 2px solid black;
+    border: 1px solid #555;
     margin: 10px;
     padding: 10px;
     border-radius: 15px;
@@ -88,4 +107,38 @@ input
     font-weight: bold;
     background: #white;
     background: rgba(255, 255, 255, 0.9);
+}
+
+.autoWidth
+{
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+
+#selSensorContainer
+{
+    display: table;
+    margin: 0 auto;
+}
+
+#btnRenderHeatMap {
+    font-weight: bold;
+    float: left;
+    color: #287d00;
+}
+
+#btnRemoveHeatMap {
+    font-weight: bold;
+    float: right;
+    color: #a20000;
+}
+
+#uniLogo
+{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 250px;
+    z-index: 1;
 }
