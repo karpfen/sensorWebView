@@ -22,8 +22,6 @@ generate images derived from sensor data and display this data in a web map.
 <%@ page import="org.xml.sax.SAXParseException" %>
 <%@ page import="java.io.*" %>
 <%@ page import="org.w3c.dom.*" %>
-
-
 <%
 /*
  * Only a limited number of all available time stamps will be displayed in

@@ -20,7 +20,7 @@ generate images derived from sensor data and display this data in a web map.
     <meta charset="UTF-8"> 
     <title>Urban Emotions Web Viewer</title>
     <link rel="stylesheet" type="text/css" href="http://openlayers.org/en/v3.16.0/css/ol.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="stylesheet" type="text/css"
     href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <link href='https://fonts.googleapis.com/css?family=Bitter:400,700'
@@ -28,11 +28,11 @@ generate images derived from sensor data and display this data in a web map.
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="http://openlayers.org/en/v3.16.0/build/ol.js"></script>
-    <script src="script/init_osm_map.js" type="text/javascript"></script>
-    <script src="script/configBar.js" type="text/javascript"></script>
+    <script src="./js/init_osm_map.js" type="text/javascript"></script>
+    <script src="./js/configBar.js" type="text/javascript"></script>
   </head>
   <body onload="init_osm ();">
-    <%@include file="countDates.jsp" %>
+    <%@include file="./jsp/countDates.jsp" %>
     <div id="mapWrapper">
         <div id="layerConfig">
         <h1>SensorWebView</h1>
