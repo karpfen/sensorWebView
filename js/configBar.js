@@ -51,9 +51,9 @@ $ (function ()
     $ ("#sldDate").slider ({
     range: true,
     min: 0,
-    max: count - 1,
+    max: dateCount - 1,
     step: 1,
-    values: [(count / 4), (3 * count / 4)],
+    values: [(dateCount / 4), (3 * dateCount / 4)],
     slide: function (event, ui)
         {
             $ ("#txtDate").val (dates[ui.values[0]] + " - " +

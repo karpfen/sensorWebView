@@ -126,7 +126,7 @@ catch (SAXParseException saxEx)
 %>
 
 <script language="javascript"> 
-     var count = "<%=numDatesDisplayed%>";
+     var dateCount = "<%=numDatesDisplayed%>";
      var dates = "<%=allDates%>";
      dates = dates.split(',');
 </script> 
