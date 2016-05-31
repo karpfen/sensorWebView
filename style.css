@@ -16,7 +16,7 @@
  */
 
 * {
-    font-family: "Merriweather", serif;
+    font-family: "Bitter", serif;
 }
 p, h1, label
 {
@@ -24,8 +24,26 @@ p, h1, label
     color: #555;
 }
 
-label {
-    font-weight: bold; }
+
+label
+{
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    font-weight: bold;
+}
+
+input
+{
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    font-weight: bold;
+}
 
 h1
 {

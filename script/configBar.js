@@ -31,6 +31,7 @@ $ (function ()
     .click (function (event)
     {
         map.removeLayer (heatMapLayer);
+        alert(count);
     });
 
     // Radius slider
@@ -50,11 +51,13 @@ $ (function ()
     $ ("#sldDate").slider ({
     range: true,
     min: 0,
-    max: 100,
-    values: [25, 75],
+    max: count - 1,
+    step: 1,
+    values: [(count / 4), (3 * count / 4)],
     slide: function (event, ui)
         {
-            $ ("#txtDate").val (ui.values[0] + " - " + ui.values[1]);
+            $ ("#txtDate").val (dates[ui.values[0]] + " - " +
+            dates[ui.values[1]]);
         }
     });
     $ ("txtDate").val ($("#sldDate").slider ("values", 0) + " - " + $
@@ -63,13 +66,3 @@ $ (function ()
     // Sensor select
     $ ("#selSensor").selectmenu ();
 });
-
-function updateRadiusValue (val)
-{
-    document.getElementById ("radiusValue").value = val;
-}
-
-function updateRadiusSlider (val)
-{
-    document.getElementById ("radiusSlider").value = val;
-}

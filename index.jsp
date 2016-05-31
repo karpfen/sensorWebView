@@ -23,7 +23,7 @@ generate images derived from sensor data and display this data in a web map.
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css"
     href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,700'
+    <link href='https://fonts.googleapis.com/css?family=Bitter:400,700'
     rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -32,23 +32,22 @@ generate images derived from sensor data and display this data in a web map.
     <script src="script/configBar.js" type="text/javascript"></script>
   </head>
   <body onload="init_osm ();">
+    <%@include file="countDates.jsp" %>
     <div id="mapWrapper">
         <div id="layerConfig">
         <h1>SensorWebView</h1>
             <p>
                 <div>
                     <label for="txtRadius">Weight:</label>
-                    <input type="text" id="txtRadius"readonly>
+                    <input type="text" id="txtRadius" readonly>
                 </div>
                 <div id="sldRadius"></div>
-            </p>
             <p>
                 <div>
                     <label for="txtDate">Date:</label>
                     <input type="text" id="txtDate" readonly>
                 </div>
                 <div id="sldDate"></div>
-            </p>
             <p>
                 <div id="selSensorContainer">
                     <form action="#" class="autoWidth">
@@ -62,14 +61,12 @@ generate images derived from sensor data and display this data in a web map.
                         </fieldset>
                     </form>
                 </div>
-            </p>
             <hr>
             <p>
                 <div>
                     <button id="btnRenderHeatMap">Render Heat Map</button>
                     <button id="btnRemoveHeatMap">Remove Heat Map</button>
                 </div>
-            </p>
         </div>
         <div id="osm_map" class="map" tabindex="0"></div>
     </div>

@@ -22,7 +22,16 @@ generate images derived from sensor data and display this data in a web map.
 <%@ page import="org.xml.sax.SAXParseException" %>
 <%@ page import="java.io.*" %>
 <%@ page import="org.w3c.dom.*" %>
+
+
 <%
+/*
+ * Only a limited number of all available time stamps will be displayed in
+ * the UI. This number defines how many there will be. They are evenly
+ * spaced throughout the data.
+ */
+final int numDatesDisplayed = 30;
+String allDates = "";
 try
 {
     // Parse the config file for database credentials
@@ -54,10 +63,9 @@ try
     String password = (String)
         xpath.compile ("//config//jdbc//password").evaluate (document, XPathConstants.STRING);
 
-    // Access database
-    String myQuery = "SELECT column_name "
-        + "FROM information_schema.columns "
-        + "WHERE table_name = 'observations_compact'";
+    // Access database for date count
+    String myQuery = "SELECT count (timestamp) "
+        + "FROM observations_compact";
     Connection myConnection = null;
     PreparedStatement myPreparedStatement = null;
     ResultSet rset = null;
@@ -66,19 +74,34 @@ try
     myPreparedStatement = myConnection.prepareStatement(myQuery);
     rset = myPreparedStatement.executeQuery();
 
-    //build sensor drop down list
-    String sensorName = "";
-    out.println ("<select name = \"Sensor\">");
+    int countTotal = 0;
     while (rset.next ())
     {
-        sensorName = rset.getString("column_name");
-        out.print ("<option value = \"");
-        out.print (sensorName);
-        out.print ("\">");
-        out.print (sensorName);
-        out.println ("</option>");
+        countTotal = (int) rset.getInt("count");
     }
-    out.println ("</select>");
+    int factor = countTotal / numDatesDisplayed;
+
+    // Access database for all dates
+    myQuery = "SELECT tbl.timestamp "
+        + "FROM ("
+        + "SELECT *,row_number() OVER (ORDER BY timestamp ASC) AS row FROM "
+        + "observations_compact) tbl "
+        + "WHERE tbl.row % " + factor + " = 0";
+    myConnection = null;
+    myPreparedStatement = null;
+    rset = null;
+    Class.forName (driver).newInstance ();
+    myConnection = DriverManager.getConnection(url,username,password);
+    myPreparedStatement = myConnection.prepareStatement(myQuery);
+    rset = myPreparedStatement.executeQuery();
+
+    String date = "";
+    while (rset.next ())
+    {
+         date = rset.getString("timestamp");
+         allDates += date + ",";
+    }
+    allDates = allDates.substring (0, allDates.length () - 1);
 }
 catch (ClassNotFoundException e)
 {
@@ -103,3 +126,9 @@ catch (SAXParseException saxEx)
     out.println ("SAXParseException: " + saxEx.getMessage ());
 }
 %>
+
+<script language="javascript"> 
+     var count = "<%=numDatesDisplayed%>";
+     var dates = "<%=allDates%>";
+     dates = dates.split(',');
+</script> 
