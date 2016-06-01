@@ -23,6 +23,15 @@ function makeHeatMapLayer ()
     // Variables defined by the user
     var radius = $ ("#sldRadius").slider ("option", "value");
     var wmsStyle = $ ("#selSensor").val ();
+    var minDate = dates[$ ("#sldDate").slider ("option", "values")[0]];
+    if (minDate == undefined)
+        minDate = dates[0];
+    var maxDate = dates[$ ("#sldDate").slider ("option", "values")[1]];
+    if (maxDate == undefined)
+        maxDate = dates[dates.length - 1];
+
+    cql_filter = "timestamp >= '" + minDate + "' AND " + "timestamp <= '" +
+    maxDate + "'";
     wmsStyle = getHeatmapStyleName (wmsStyle);
 
     heatMapLayer = new ol.layer.Image ({
@@ -30,7 +39,7 @@ function makeHeatMapLayer ()
         source: new ol.source.ImageWMS({
         url: 'http://' + location.hostname + ':8080/geoserver/uEmotions/wms',
         params: {LAYERS: 'uEmotions:observations_compact', env: 'radius:' + radius,
-        STYLES: "" + wmsStyle},
+        STYLES: "" + wmsStyle, 'cql_filter': cql_filter},
         serverType: 'geoserver'
         })
     });

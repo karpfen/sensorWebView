@@ -31,7 +31,6 @@ $ (function ()
     .click (function (event)
     {
         map.removeLayer (heatMapLayer);
-        alert(count);
     });
 
     // Radius slider
@@ -53,7 +52,7 @@ $ (function ()
     min: 0,
     max: dateCount - 1,
     step: 1,
-    values: [(dateCount / 4), (3 * dateCount / 4)],
+    values: [0, dateCount - 1],
     slide: function (event, ui)
         {
             $ ("#txtDate").val (dates[ui.values[0]] + " - " +
