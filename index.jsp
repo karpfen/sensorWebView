@@ -38,7 +38,7 @@ generate images derived from sensor data and display this data in a web map.
         <h1>SensorWebView</h1>
             <p>
                 <div>
-                    <label for="txtRadius">Weight:</label>
+                    <label for="txtRadius">Kernel Density Radius:</label>
                     <input type="text" id="txtRadius" readonly>
                 </div>
                 <div id="sldRadius"></div>
