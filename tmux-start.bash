@@ -7,7 +7,7 @@ tmux new-window -t $SESSION:1 -k -n main
 tmux send-keys -t $SESSION:1 'vim index.jsp' C-m
 tmux split-window -h
 tmux select-pane -t 1
-tmux send-keys -t $SESSION: 'vim script/init_osm_map.js' C-m
+tmux send-keys -t $SESSION: 'vim js/init_osm_map.js' C-m
 tmux split-window -v
 firefox http://localhost:8080/sensorWebView/ &
 tmux attach -t $SESSION
