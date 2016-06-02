@@ -37,7 +37,7 @@ function makeHeatMapLayer ()
     heatMapLayer = new ol.layer.Image ({
         title: 'Heat map',
         source: new ol.source.ImageWMS({
-        url: 'http://' + location.hostname + ':8080/geoserver/uEmotions/wms',
+        url: 'http://' + location.hostname + '/geoserver/uEmotions/wms',
         params: {LAYERS: 'uEmotions:observations_compact', env: 'radius:' + radius,
         STYLES: "" + wmsStyle, 'cql_filter': cql_filter},
         serverType: 'geoserver'
