@@ -9,7 +9,7 @@
        <Name>Heatmap</Name>
        <UserStyle>
          <Title>Heatmap</Title>
-         <Abstract>A heatmap surface showing population density</Abstract>
+         <Abstract>A heatmap surface showing heartrate data density</Abstract>
          <FeatureTypeStyle>
            <Transformation>
              <ogc:Function name="gs:Heatmap">
