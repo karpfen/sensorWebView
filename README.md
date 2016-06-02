@@ -30,7 +30,7 @@ in a `PostgreSQL 9.3` database with a `PostGIS 2.1` extension.
 
 ## Configuration
 
-### sensorWebView
+### SensorWebView
 
 The credentials for the database have to be stored in Tomcat's
 `conf/dbConfig.xml` in the following form
