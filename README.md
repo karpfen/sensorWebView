@@ -50,9 +50,8 @@ The credentials for the database have to be stored in Tomcat's
 ### GeoServer
 
 To create heat map layers, the database table has to be published on GeoServer
-first. After that, a style has to be defined in form of an SLD document, which is then applied to the 
-layer. The file `./sld/sampleStyle.sld` is a template SLD (Style Layer Descriptor)
-for use in this application. To use it,
+first. After that, a style has to be defined in form of an SLD (Style Layer Descriptor) document, which is then applied to the 
+layer. The file `./sld/sampleStyle.sld` is a template SLD for use in this application. To use it,
 the element `<ogc:Literal>heartrate_int<ogc:Literal>` has to be changed to the
 respective table column name from the data to be represented.
 
