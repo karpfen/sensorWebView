@@ -10,6 +10,10 @@ The screenshot shows the software's user interface along with some sample output
 
 ![Screenshot of the web app's user interface][screen]
 
+**Acknowledgement:** The JavaScript libraries and map data used for the user interface are
+[jQuery](https://jqueryui.com/), [OpenLayers 3](http://openlayers.org/) and
+[OpenStreetMap](http://www.openstreetmap.org/).
+
 ## Installation
 
 This software is designed to be run as a Tomcat webapp. To install, simply clone
