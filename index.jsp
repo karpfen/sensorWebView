@@ -45,7 +45,7 @@ generate images derived from sensor data and display this data in a web map.
                 <div id="sldRadius"></div>
             <p>
                 <div>
-                    <label for="txtDate">Date:</label>
+                    <label for="txtDateMin">Date:</label>
                     <input type="text" id="txtDateMin" readonly>
                     <input type="text" id="txtDateMax" readonly>
                 </div>
