@@ -63,8 +63,8 @@ try
 
     // Access database for date count
     String myQuery = "SELECT count (timestamp) "
-        + "FROM observations_compact"
-        + "Connection myConnection = null;
+        + "FROM observations_compact;";
+    Connection myConnection = null;
     PreparedStatement myPreparedStatement = null;
     ResultSet rset = null;
     Class.forName (driver).newInstance ();
@@ -80,18 +80,20 @@ try
     int factor = countTotal / numDatesDisplayed;
 
     // Access database for all dates
-    myQuery = "SELECT * FROM("
-        + "(SELECT MIN(timestamp) AS timestamp FROM observations_compact AS bar)"
-        + "UNION"
-        + "(SELECT tbl.timestamp"
-        + "FROM ("
-        + "SELECT *,row_number() OVER (ORDER BY timestamp ASC)
-        + "AS row FROM"
-        + "observations_compact)  tbl"
-        + "WHERE tbl.row % " + factor + " = 0)"
-        + "UNION"
-        + "(SELECT MAX(timestamp) AS timestamp FROM observations_compact)"
-        + ") timestamp"
+    myQuery = "SELECT * FROM( "
+        + "(SELECT MIN(timestamp) AS timestamp "
+        + "FROM observations_compact) "
+        + "UNION "
+        + "(SELECT tbl.timestamp "
+        + "FROM ( "
+        + "SELECT *,row_number() OVER (ORDER BY timestamp ASC) "
+        + "AS row FROM "
+        + "observations_compact)  tbl "
+        + "WHERE tbl.row % " + factor + " = 0) "
+        + "UNION "
+        + "(SELECT MAX(timestamp) AS timestamp "
+        + "FROM observations_compact) "
+        + ") timestamp "
         + "ORDER BY timestamp;";
 
     myConnection = null;
@@ -103,10 +105,13 @@ try
     rset = myPreparedStatement.executeQuery();
 
     String date = "";
+    // set countTotal to the actual number of received dates
+    countTotal = 0;
     while (rset.next ())
     {
-         date = rset.getString("timestamp");
-         allDates += date + ",";
+        countTotal++;
+        date = rset.getString("timestamp");
+        allDates += date + ",";
     }
     allDates = allDates.substring (0, allDates.length () - 1);
 }
