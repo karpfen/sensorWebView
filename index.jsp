@@ -30,6 +30,7 @@ generate images derived from sensor data and display this data in a web map.
     <script src="http://openlayers.org/en/v3.16.0/build/ol.js"></script>
     <script src="./js/init_osm_map.js" type="text/javascript"></script>
     <script src="./js/configBar.js" type="text/javascript"></script>
+    <link rel="icon" href="./img/icon.png">
   </head>
   <body onload="init_osm ();">
     <%@include file="./jsp/countDates.jsp" %>
