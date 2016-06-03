@@ -63,7 +63,7 @@ try
 
     // Access database for date count
     String myQuery = "SELECT count (timestamp) "
-        + "FROM observations_compact";
+        + "FROM observations_compact"
         + "Connection myConnection = null;
     PreparedStatement myPreparedStatement = null;
     ResultSet rset = null;
