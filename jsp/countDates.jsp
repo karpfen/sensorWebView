@@ -64,7 +64,7 @@ try
     // Access database for date count
     String myQuery = "SELECT count (timestamp) "
         + "FROM observations_compact";
-    Connection myConnection = null;
+        + "Connection myConnection = null;
     PreparedStatement myPreparedStatement = null;
     ResultSet rset = null;
     Class.forName (driver).newInstance ();
@@ -80,11 +80,20 @@ try
     int factor = countTotal / numDatesDisplayed;
 
     // Access database for all dates
-    myQuery = "SELECT tbl.timestamp "
+    myQuery = "SELECT * FROM("
+        + "(SELECT MIN(timestamp) AS timestamp FROM observations_compact AS bar)"
+        + "UNION"
+        + "(SELECT tbl.timestamp"
         + "FROM ("
-        + "SELECT *,row_number() OVER (ORDER BY timestamp ASC) AS row FROM "
-        + "observations_compact) tbl "
-        + "WHERE tbl.row % " + factor + " = 0";
+        + "SELECT *,row_number() OVER (ORDER BY timestamp ASC)
+        + "AS row FROM"
+        + "observations_compact)  tbl"
+        + "WHERE tbl.row % " + factor + " = 0)"
+        + "UNION"
+        + "(SELECT MAX(timestamp) AS timestamp FROM observations_compact)"
+        + ") timestamp"
+        + "ORDER BY timestamp;";
+
     myConnection = null;
     myPreparedStatement = null;
     rset = null;
