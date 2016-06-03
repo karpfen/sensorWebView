@@ -55,12 +55,12 @@ $ (function ()
     values: [0, dateCount - 1],
     slide: function (event, ui)
         {
-            $ ("#txtDate").val (dates[ui.values[0]] + " - " +
-            dates[ui.values[1]]);
+            $ ("#txtDateMin").val ("Min: " + dates[ui.values[0]]);
+            $ ("#txtDateMax").val ("Max: " + dates[ui.values[1]]);
         }
     });
-    $ ("txtDate").val ($("#sldDate").slider ("values", 0) + " - " + $
-    ("#sldDate").slider ("values", 1));
+    $ ("#txtDateMin").val ("Min: " + dates[0]);
+    $ ("#txtDateMax").val ("Max: " + dates[dateCount - 1]);
 
     // Sensor select
     $ ("#selSensor").selectmenu ();
