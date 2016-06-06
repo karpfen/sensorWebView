@@ -15,6 +15,9 @@
  * generate images derived from sensor data and display this data in a web map.
  */
 
+var geoServerWorkspace = "uEmotions";
+var geoServerLayerName = "observations_compact";
+
 var heatMapLayer;
 var map;
 
@@ -37,8 +40,8 @@ function makeHeatMapLayer ()
     heatMapLayer = new ol.layer.Image ({
         title: 'Heat map',
         source: new ol.source.ImageWMS({
-        url: 'http://' + location.hostname + '/geoserver/uEmotions/wms',
-        params: {LAYERS: 'uEmotions:observations_compact', env: 'radius:' + radius,
+        url: 'http://' + location.hostname + '/geoserver/' + geoServerWorkspace + '/wms',
+        params: {LAYERS: geoServerWorkspace + ':' + geoServerLayerName, env: 'radius:' + radius,
         STYLES: "" + wmsStyle, 'cql_filter': cql_filter},
         serverType: 'geoserver'
         })
@@ -68,6 +71,8 @@ function init_osm ()
     map.addLayer (mapLayer);
     map.addLayer (heatMapLayer);
 
+    setLayerExtent ();
+
     document.getElementById ('zoom-out').onclick = function () {
         var view = map.getView ();
         var zoom = view.getZoom ();
@@ -88,4 +93,41 @@ function getHeatmapStyleName (wmsStyle)
     wmsStyle = wmsStyle.replace ("_float", "");
     wmsStyle = "heatmap_" + wmsStyle;
     return wmsStyle;
+}
+
+function setLayerExtent ()
+{
+    var url =
+    "http://" + location.hostname + "/geoserver/" + geoServerWorkspace
+    + "/ows?service=WFS&version=1.0.0&request=GetCapabilities";
+
+    var xhttp = new XMLHttpRequest ();
+    xhttp.open ("GET", url , true);
+    xhttp.onreadystatechange = function ()
+    {
+        if (xhttp.readyState == 4 && xhttp.status == 200)
+        {
+            var capabilities = xhttp.responseText;
+            var capabilitiesXML = jQuery.parseXML (capabilities);
+            if (capabilitiesXML)
+            {
+                var bbox = capabilitiesXML.getElementsByTagName
+                ("LatLongBoundingBox");
+                var bboxCoords = [0, 0, 0, 0];
+                if (bbox.length > 0)
+                {
+                    bbox = bbox[0];
+                    bboxCoords[0] = parseFloat (bbox.getAttribute ("minx"));
+                    bboxCoords[1] = parseFloat (bbox.getAttribute ("miny"));
+                    bboxCoords[2] = parseFloat (bbox.getAttribute ("maxx"));
+                    bboxCoords[3] = parseFloat (bbox.getAttribute ("maxy"));
+
+                    map.getView ().setCenter (ol.proj.transform
+                    ([bboxCoords[0], bboxCoords[1]], 'EPSG:4326', 'EPSG:3857'));
+                    map.getView().setZoom(12);
+                }
+            }
+        }
+    };
+    xhttp.send ();
 }
