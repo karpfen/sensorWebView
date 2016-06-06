@@ -139,7 +139,10 @@ catch (SAXParseException saxEx)
 }
 finally
 {
-    myConnection.close ();
+    if (myConnection != null)
+    {
+        myConnection.close ();
+    }
 }
 %>
 
