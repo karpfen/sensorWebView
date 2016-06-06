@@ -30,6 +30,7 @@ generate images derived from sensor data and display this data in a web map.
  */
 final int numDatesDisplayed = 30;
 String allDates = "";
+Connection myConnection = null;
 try
 {
     // Parse the config file for database credentials
@@ -64,7 +65,6 @@ try
     // Access database for date count
     String myQuery = "SELECT count (timestamp) "
         + "FROM observations_compact;";
-    Connection myConnection = null;
     PreparedStatement myPreparedStatement = null;
     ResultSet rset = null;
     Class.forName (driver).newInstance ();
@@ -136,6 +136,10 @@ catch (SAXParseException saxEx)
 {
     out.println ("<p>");
     out.println ("SAXParseException: " + saxEx.getMessage ());
+}
+finally
+{
+    myConnection.close ();
 }
 %>
 
