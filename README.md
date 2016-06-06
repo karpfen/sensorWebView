@@ -28,9 +28,13 @@ and
 [WPS](http://docs.geoserver.org/maintain/en/user/extensions/wps/install.html)
 installation guides.
 
-This software was tested successfully using the combination `Tomcat 7`,
-`GeoServer 2.8.3` and Java JDK `openjdk version 1.8.0_91` with the data stored
-in a `PostgreSQL 9.3` database with a `PostGIS 2.1` extension.
+Because of the many available versions of the used software products, not all
+combinations can be guaranteed to work. Setups in which this software was tested successfully are
+
+- `Tomcat 7` and `JRE 1.8.0_91` and running on `Ubuntu 15.10` with `GeoServer 2.8.3`
+- `Tomcat 8` and `JRE 1.8.0_92` running on `Windows Server 2012R2` with `GeoServer 2.9.0`
+
+In all cases the data was stored in a `PostgreSQL 9.3` database with a `PostGIS 2.1` extension.
 
 ## Configuration
 
