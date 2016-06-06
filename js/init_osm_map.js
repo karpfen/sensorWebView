@@ -121,9 +121,12 @@ function setLayerExtent ()
                     bboxCoords[1] = parseFloat (bbox.getAttribute ("miny"));
                     bboxCoords[2] = parseFloat (bbox.getAttribute ("maxx"));
                     bboxCoords[3] = parseFloat (bbox.getAttribute ("maxy"));
+                    cx = bboxCoords[0] + (bboxCoords[2] - bboxCoords[0]) * 2;
+                    cy = bboxCoords[1] + (bboxCoords[3] - bboxCoords[1]) / 2;
 
                     map.getView ().setCenter (ol.proj.transform
-                    ([bboxCoords[0], bboxCoords[1]], 'EPSG:4326', 'EPSG:3857'));
+                    ([cx, cy],
+                    'EPSG:4326', 'EPSG:3857'));
                     map.getView().setZoom(12);
                 }
             }
