@@ -72,8 +72,6 @@ generate images derived from sensor data and display this data in a web map.
         </div>
         <div id="osm_map" class="map" tabindex="0"></div>
     </div>
-    <button id="zoom-out">Zoom out</button>
-    <button id="zoom-in">Zoom in</button>
     <img id="uniLogo" src="./img/uni_sbg_logo.gif"/>
   </body>
 </html>
