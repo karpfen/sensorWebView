@@ -155,11 +155,29 @@ input
     color: #a20000;
 }
 
-#uniLogo
+.logo
 {
     position: absolute;
+    z-index: 1;
+    max-height: 35px;
+    width: auto;
+    height: auto;
+}
+
+#uniLogo
+{
     top: 10px;
     right: 10px;
-    width: 130px;
-    z-index: 1;
+}
+
+#zgisLogo
+{
+    bottom: 10px;
+    left: 10px;
+}
+#deptOfGILogo
+
+{
+    bottom: 10px;
+    right: 10px;
 }

@@ -72,6 +72,8 @@ generate images derived from sensor data and display this data in a web map.
         </div>
         <div id="osm_map" class="map" tabindex="0"></div>
     </div>
-    <img id="uniLogo" src="./img/uni_sbg_logo.gif"/>
+    <img id="uniLogo" class="logo" src="./img/uni_sbg_logo.png"/>
+    <img id="zgisLogo" class="logo" src="./img/zgis_logoBW.png"/>
+    <img id="deptOfGILogo" class="logo" src="./img/dept_of_gi_logoBW.png"/>
   </body>
 </html>
