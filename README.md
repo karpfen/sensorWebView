@@ -59,7 +59,7 @@ The credentials for the database have to be stored in Tomcat's
 
 To create heat map layers, the database table has to be published on GeoServer
 first. After that, a style has to be defined in form of an SLD (Style Layer Descriptor) document, which is then applied to the 
-layer. The file `./sld/sampleStyle.sld` is a template SLD for use in this application. To use it,
+layer. The file `./sampledata/sampleStyle.sld` is a template SLD for use in this application. To use it,
 the element `<ogc:Literal>heartrate_int<ogc:Literal>` has to be changed to the
 respective table column name from the data to be represented.
 
@@ -68,5 +68,7 @@ respective table column name from the data to be represented.
 The data from which the heat maps are derived has to be point data of the
 `PostGIS` datatype `geometry` and feature a `timestamp`. Also, at least one weighting factor represented
 by a numeric data type has to be present. In this case, these are sensor data.
+The file `sampledata/sampleDBtable.sql` contains the SQL query for creating a
+minimal example for a table that can be used with this software.
 
 [screen]: ./img/screen.png "Screenshot of the web app's user interface"
