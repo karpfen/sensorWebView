@@ -69,6 +69,7 @@ The data from which the heat maps are derived has to be point data of the
 `PostGIS` datatype `geometry` and feature a `timestamp`. Also, at least one weighting factor represented
 by a numeric data type has to be present. In this case, these are sensor data.
 The file `sampledata/sampleDBtable.sql` contains the SQL query for creating a
-minimal example for a table that can be used with this software.
+minimal example for a table with 100 randomly generated data points that can be
+used for testing this software.
 
 [screen]: ./img/screen.png "Screenshot of the web app's user interface"
